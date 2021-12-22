@@ -9,8 +9,7 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
-class RegisterController extends Controller
-{
+class RegisterController extends Controller {
     /*
     |--------------------------------------------------------------------------
     | Register Controller
@@ -36,34 +35,37 @@ class RegisterController extends Controller
      *
      * @return void
      */
-    public function __construct()
-    {
+    public function __construct() {
         $this->middleware('guest');
     }
 
     /**
      * Get a validator for an incoming registration request.
      *
-     * @param  array  $data
+     * @param array $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
-    protected function validator(array $data)
-    {
+    protected function validator(array $data) {
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+        ], [
+            'nome.required' => 'O campo nome deve ser preenchido',
+            'nome.max' => 'O campo nome deve ter no máximo 255 caracteres',
+            'email.email' => 'O campo e-mail deve ser um e-mail válido',
+            'password.min' => 'O campo senha deve ter no mínimo 8 caracteres',
+            'password.confirmed' => 'Digite a confirmação de senha corretamente'
         ]);
     }
 
     /**
      * Create a new user instance after a valid registration.
      *
-     * @param  array  $data
+     * @param array $data
      * @return \App\Models\User
      */
-    protected function create(array $data)
-    {
+    protected function create(array $data) {
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],

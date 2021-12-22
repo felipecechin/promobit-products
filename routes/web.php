@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\TagController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,9 +15,16 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('login');
 });
 
-Auth::routes();
+Auth::routes(['login' => true,
+    'logout' => true,
+    'register' => true,
+    'reset' => false,   // for resetting passwords
+    'confirm' => false,  // for additional password confirmations
+    'verify' => false,  // for email verification
+]);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::resource('/tag', TagController::class)->except(['create', 'show'])->middleware('auth');
