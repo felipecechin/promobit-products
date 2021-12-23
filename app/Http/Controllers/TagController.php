@@ -6,9 +6,6 @@ use App\Models\Tag;
 use Illuminate\Http\Request;
 
 class TagController extends Controller {
-    public function __construct(Tag $tag) {
-        $this->tag = $tag;
-    }
 
     /**
      * Display a listing of the resource.
@@ -16,7 +13,7 @@ class TagController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function index() {
-        $tags = $this->tag->paginate(5);
+        $tags = Tag::paginate(5);
         return view('tag.index', ['tags' => $tags]);
     }
 
@@ -27,23 +24,21 @@ class TagController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request) {
-        $request->validate($this->tag->rules(), $this->tag->feedback());
+        $rules = [
+            'name' => 'required|unique:tag,name'
+        ];
+        $feedback = [
+            'name.required' => 'Preencha o nome da tag.',
+            'name.unique' => 'Tag já existe.'
+        ];
 
-        $this->tag->create([
+        $request->validate($rules, $feedback);
+
+        Tag::create([
             'name' => $request->name
         ]);
 
-        return redirect()->route('tag.index');
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param \App\Models\Tag $tag
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Tag $tag) {
-        //
+        return redirect()->route('tag.index')->with('success', 'Tag cadastrada com sucesso.');
     }
 
     /**
@@ -53,7 +48,7 @@ class TagController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function edit(Tag $tag) {
-        //
+        return view('tag.edit', ['tag' => $tag]);
     }
 
     /**
@@ -64,7 +59,17 @@ class TagController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Tag $tag) {
-        //
+        $rules = [
+            'name' => 'required|unique:tag,name,' . $tag->id
+        ];
+        $feedback = [
+            'name.required' => 'Preencha o nome da tag.',
+            'name.unique' => 'Tag já existe.'
+        ];
+
+        $request->validate($rules, $feedback);
+        $tag->update($request->all());
+        return redirect()->back()->with('success', 'Tag salva com sucesso.');
     }
 
     /**
@@ -74,6 +79,7 @@ class TagController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function destroy(Tag $tag) {
-        //
+        $tag->delete();
+        return redirect()->route('tag.index')->with('delete_success', 'Tag excluída com sucesso.');
     }
 }

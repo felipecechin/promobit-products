@@ -4,26 +4,8 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
-                <form action="{{route('tag.store')}}" method="post">
-                    <div class="card">
-                        <div class="card-header">Cadastrar tag</div>
-
-                        <div class="card-body">
-                            @if($errors->has('name'))
-                                <div class="alert alert-danger" role="alert">
-                                    {{$errors->first('name')}}
-                                </div>
-                            @endif
-                            @csrf
-                            <label for="inputName" class="form-label">Nome</label>
-                            <input type="text" class="form-control" value="{{ old('name') }}" id="inputName" aria-describedby="nomeHelp" placeholder="Digite o nome da tag" name="name">
-                        </div>
-
-                        <div class="card-footer">
-                            <button type="submit" class="btn btn-primary btn-sm float-end">Cadastrar</button>
-                        </div>
-                    </div>
-                </form>
+                @component('tag._components.form_create_edit')
+                @endcomponent
             </div>
         </div>
 
@@ -32,11 +14,17 @@
                 <div class="card">
                     <div class="card-header">Lista de tags</div>
                     <div class="card-body">
+                        @if(session('delete_success'))
+                            <div class="alert alert-success" role="alert">
+                                {{session('delete_success')}}
+                            </div>
+                        @endif
                         <table class="table table-hover">
                             <thead>
                             <tr>
                                 <th scope="col">ID</th>
                                 <th>Nome</th>
+                                <th></th>
                             </tr>
                             </thead>
                             <tbody>
@@ -44,6 +32,19 @@
                                 <tr>
                                     <th scope="row">{{$tag->id}}</th>
                                     <td>{{$tag->name}}</td>
+                                    <td>
+                                        <form id="form_{{$tag->id}}" method="post" action="{{ route('tag.destroy', ['tag' => $tag->id]) }}">
+                                        @method('DELETE')
+                                        @csrf
+                                        <!--<button type="submit">Excluir</button>-->
+                                            <a href="{{ route('tag.edit', ['tag' => $tag->id ]) }}" class="btn btn-primary">
+                                                <i class="fas fa-pencil-alt"></i>
+                                            </a>
+                                            <a href="#" onclick="document.getElementById('form_{{$tag->id}}').submit()" class="btn btn-danger">
+                                                <i class="fas fa-trash-alt"></i>
+                                            </a>
+                                        </form>
+                                    </td>
                                 </tr>
                             @endforeach
                             </tbody>
