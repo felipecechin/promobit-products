@@ -79,6 +79,7 @@ class TagController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function destroy(Tag $tag) {
+        $tag->products()->detach();
         $tag->delete();
         return redirect()->route('tag.index')->with('delete_success', 'Tag excluída com sucesso.');
     }
