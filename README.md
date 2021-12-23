@@ -1,11 +1,20 @@
 ## Tecnologias e versões
 
+Foram utilizadas as seguintes tecnologias:
+
 - PHP 7.4.6
 - Laravel 8.77.1
 - MySQL 5.7.31
 - Composer 2.1.22
+- NPM 6.14.8 (para instalação do bootstrap)
 
-## Learning Laravel
+## Ao clonar repositório
+
+1. Definir parâmetros de conexão com banco de dados MySQL no arquivo `.env`
+2. Executar comando ```composer install``` para instalar dependências.
+3. Executar comando ```php artisan migrate``` para criar as tabelas no banco de dados.
+4. Executar comando ```npm install && npm run dev``` para compilar arquivos JS e CSS.
+5. Rodar aplicação Laravel com ```php artisan serve```
 
 ## SQL para extração de relatório de relevância de produtos
 
