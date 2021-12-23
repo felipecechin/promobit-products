@@ -11,11 +11,11 @@ Foram utilizadas as seguintes tecnologias:
 ## Ao clonar repositório
 
 1. Criar banco de dados de nome `promobit`
-2. Definir parâmetros de conexão com banco de dados MySQL no arquivo `.env`
-3. Executar comando ```composer install``` para instalar dependências.
-4. Executar comando ```php artisan migrate``` para criar as tabelas no banco de dados.
-5. Executar comando ```npm install && npm run dev``` para compilar arquivos JS e CSS.
-6. Rodar aplicação Laravel com ```php artisan serve```
+3. Definir parâmetros de conexão com banco de dados MySQL no arquivo `.env`
+4. Executar comando ```composer install``` para instalar dependências.
+5. Executar comando ```php artisan migrate``` para criar as tabelas no banco de dados.
+6. Executar comando ```npm install && npm run dev``` para compilar arquivos JS e CSS.
+7. Rodar aplicação Laravel com ```php artisan serve```
 
 ## SQL para extração de relatório de relevância de produtos
 
