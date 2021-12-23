@@ -56,6 +56,12 @@
                     @elseif(isset($product->id))
                     $('#selectTags').val({{json_encode($productTags)}});
                     @endif
-                    $('#selectTags').select2();
+                    $('#selectTags').select2({
+                        language: {
+                            noResults: function () {
+                                return "Sem tags cadastradas.";
+                            }
+                        }
+                    });
                 });
             </script>
