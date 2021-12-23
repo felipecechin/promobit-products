@@ -37,7 +37,7 @@
                                         @method('DELETE')
                                         @csrf
                                         <!--<button type="submit">Excluir</button>-->
-                                            <a href="{{ route('tag.edit', ['tag' => $tag->id ]) }}" class="btn btn-primary">
+                                            <a href="{{ route('tag.edit', ['tag' => $tag->id ]) }}" class="btn btn-primary me-2">
                                                 <i class="fas fa-pencil-alt"></i>
                                             </a>
                                             <a href="#" onclick="document.getElementById('form_{{$tag->id}}').submit()" class="btn btn-danger">

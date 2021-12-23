@@ -21,13 +21,13 @@
                         @endif
                         @csrf
                         <label for="inputName" class="form-label">Nome</label>
-                        <input type="text" class="form-control" value="{{ $tag->name ?? old('name') }}" id="inputName" aria-describedby="nomeHelp" placeholder="Digite o nome da tag" name="name">
+                        <input type="text" class="form-control" value="{{ $tag->name ?? old('name') }}" id="inputName" aria-describedby="nomeHelp" placeholder="Digite o nome" name="name">
                     </div>
 
                     <div class="card-footer">
                         <div class="d-flex justify-content-end">
                             @if(isset($tag->id))
-                                <a href="{{route('tag.index')}}" class="btn btn-info btn-sm text-decoration-none me-2">
+                                <a href="{{route('tag.index')}}" class="btn btn-light btn-sm text-decoration-none me-2">
                                     Voltar
                                 </a>
                             @endif
