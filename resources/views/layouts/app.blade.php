@@ -42,6 +42,13 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{route('product.index')}}">Produtos</a>
                         </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{route('report-product.index')}}">Relatório de relevância de
+                                produtos</a>
+                        </li>
+
+
                     @endauth
                 </ul>
 

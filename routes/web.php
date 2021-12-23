@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ReportProductController;
 use App\Http\Controllers\TagController;
 use Illuminate\Support\Facades\Route;
 
@@ -30,3 +31,4 @@ Auth::routes(['login' => true,
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::resource('/tag', TagController::class)->except(['create', 'show'])->middleware('auth');
 Route::resource('/product', ProductController::class)->except(['create', 'show'])->middleware('auth');
+Route::get('/report-product', [ReportProductController::class, 'index'])->middleware('auth')->name('report-product.index');
