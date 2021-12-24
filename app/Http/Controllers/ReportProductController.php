@@ -14,7 +14,6 @@ class ReportProductController extends Controller {
     public function index() {
         $tagProducts = DB::table('tag')
             ->leftJoin('product_tag', 'tag.id', '=', 'product_tag.tag_id')
-            ->leftJoin('product', 'product_tag.product_id', '=', 'product.id')
             ->selectRaw('tag.name as tagName, count(product_tag.product_id) as numProducts')
             ->groupBy('tag.id')
             ->orderByRaw('numProducts desc')

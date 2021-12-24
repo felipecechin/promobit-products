@@ -23,7 +23,6 @@ Foram utilizadas as seguintes tecnologias:
 select t.name as tagName, count(pt.product_id) as numProducts
 from tag t
          left join product_tag pt on t.id = pt.tag_id
-         left join product p on pt.product_id = p.id
 group by t.id
 order by numProducts desc;
 ```
