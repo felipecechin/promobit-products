@@ -1,3 +1,7 @@
+## Teste lógico
+
+[Clique aqui](https://github.com/felipecechin/promobit-logic-test) para acessar o repositório com o teste lógico.
+
 ## Tecnologias e versões
 
 Foram utilizadas as seguintes tecnologias:
