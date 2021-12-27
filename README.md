@@ -17,6 +17,13 @@ Foram utilizadas as seguintes tecnologias:
 6. Executar comando ```npm install && npm run dev``` para compilar arquivos JS e CSS.
 7. Rodar aplicação Laravel com ```php artisan serve```
 
+## Funcionalidades implementadas
+
+1. CRUD de produtos
+2. CRUD de tags
+3. Relatório de relevância de produtos
+4. Autenticação
+
 ## SQL para extração de relatório de relevância de produtos
 
 ```mysql
